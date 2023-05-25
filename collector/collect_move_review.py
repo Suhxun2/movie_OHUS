@@ -67,6 +67,8 @@ review_html = driver.page_source
 doc = BeautifulSoup(review_html, "html.parser")
 review_list = doc.select("ul.list_comment div.cmt_info")
 
+empty_cnt = 0
+empty_list = []
 for i, review_box in enumerate(review_list):
     if len(review_box.select("p.desc_txt")) == 0:
         empty_cnt += 1          # empty review cnt+1
@@ -92,5 +94,5 @@ print(f"  - Total Review: {total_review_txt}")
 print(f"  - Empty Review: {empty_cnt}")
 if len(empty_list) > 0:
     print(f"    + {empty_list}")
-print(f"  - Reviews collected: {total_review - empty_review}")
+print(f"  - Reviews collected: {total_review - empty_cnt}")
 print("#" * 30)
